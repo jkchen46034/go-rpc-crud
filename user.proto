@@ -1,0 +1,29 @@
+syntax = "proto3";
+option go_package = "github.com/jk.chen/go-rpc-crud/user";
+
+message User {
+  int64 id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message UserRequest {
+  int64 id = 1;
+}
+
+message CreateUserRequest {
+  User user = 1;
+}
+
+message CreateUserResponse {
+  User user = 1; 
+}
+
+message Empty {}
+
+service UserService {
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc ReadUser(UserRequest) returns (User);
+  rpc UpdateUser(User) returns (User);
+  rpc DeleteUser(UserRequest) returns (Empty);
+}
